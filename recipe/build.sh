@@ -10,6 +10,8 @@ export PREFIX="${PREFIX}"
 pushd bindings/python
 make install3
 make install3_cython
-make check
+if [ "$python_impl" == "cpython" ]; then
+  make check
+fi
 popd
 
