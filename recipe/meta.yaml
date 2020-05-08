@@ -1,5 +1,5 @@
 {% set name = "capstone" %}
-{% set version = "4.0.1" %}
+{% set version = "4.0.2" %}
 
 package:
   name: {{ name|lower }}
@@ -7,11 +7,11 @@ package:
 
 source:
   url: https://github.com/aquynh/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 79bbea8dbe466bd7d051e037db5961fdb34f67c9fac5c3471dd105cfb1e05dc7
+  sha256: 7c81d798022f81e7507f1a60d6817f63aa76e489aa4e7055255f21a22f5e526a
 
 build:
-  number: 1
-  skip: True  # [win or osx or py < 30]
+  number: 0
+  skip: true  # [win or osx or py < 30]
 
 requirements:
   build:
@@ -35,7 +35,7 @@ about:
   license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.TXT
-  summary: 'The Ultimate Disassembler'
+  summary: The Ultimate Disassembler
   description: |
     Capstone is a lightweight multi-platform, multi-architecture disassembly framework
   doc_url: http://www.capstone-engine.org/documentation.html
