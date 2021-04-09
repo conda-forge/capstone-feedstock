@@ -139,6 +139,7 @@ Installing `capstone` from the `conda-forge` channel can be achieved by adding `
 
 ```
 conda config --add channels conda-forge
+conda config --set channel_priority strict
 ```
 
 Once the `conda-forge` channel has been enabled, `capstone` can be installed with:
@@ -217,5 +218,6 @@ In order to produce a uniquely identifiable distribution:
 Feedstock Maintainers
 =====================
 
+* [@CJ-Wright](https://github.com/CJ-Wright/)
 * [@scopatz](https://github.com/scopatz/)
 
