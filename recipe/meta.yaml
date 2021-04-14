@@ -8,10 +8,12 @@ package:
 source:
   url: https://github.com/aquynh/{{ name }}/archive/{{ version }}.tar.gz
   sha256: 7c81d798022f81e7507f1a60d6817f63aa76e489aa4e7055255f21a22f5e526a
+  patches:  # [osx]
+    - osx.patch  # [osx]
 
 build:
   number: 1
-  skip: true  # [win or osx or py < 30]
+  skip: true  # [win or py < 30]
 
 requirements:
   build:
@@ -44,3 +46,4 @@ about:
 extra:
   recipe-maintainers:
     - scopatz
+    - CJ-Wright
