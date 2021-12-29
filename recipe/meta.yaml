@@ -12,7 +12,7 @@ source:
     - osx.patch  # [osx]
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win or py < 30]
 
 requirements:
@@ -50,3 +50,4 @@ extra:
   recipe-maintainers:
     - scopatz
     - CJ-Wright
+    - thewchan
