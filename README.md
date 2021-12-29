@@ -228,4 +228,5 @@ Feedstock Maintainers
 
 * [@CJ-Wright](https://github.com/CJ-Wright/)
 * [@scopatz](https://github.com/scopatz/)
+* [@thewchan](https://github.com/thewchan/)
 
