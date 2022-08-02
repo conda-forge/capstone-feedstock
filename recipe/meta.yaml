@@ -13,7 +13,7 @@ source:
 
 build:
   number: 3
-  skip: true  # [win or py < 30]
+  skip: true  # [py < 30]
 
 requirements:
   build:
@@ -22,6 +22,7 @@ requirements:
     - cython                                 # [build_platform != target_platform]
     - {{ compiler('c') }}
     - make
+    - cmake  # [win]
   host:
     - python
     - pip
