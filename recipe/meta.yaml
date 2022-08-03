@@ -12,7 +12,7 @@ source:
     - osx.patch  # [osx]
 
 build:
-  number: 3
+  number: 4
   skip: true  # [py < 30]
 
 requirements:
