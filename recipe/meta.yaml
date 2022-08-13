@@ -12,8 +12,8 @@ source:
     - osx.patch  # [osx]
 
 build:
-  number: 3
-  skip: true  # [win or py < 30]
+  number: 4
+  skip: true  # [py < 30]
 
 requirements:
   build:
@@ -22,6 +22,7 @@ requirements:
     - cython                                 # [build_platform != target_platform]
     - {{ compiler('c') }}
     - make
+    - cmake  # [win]
   host:
     - python
     - pip
