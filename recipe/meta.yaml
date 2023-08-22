@@ -1,5 +1,5 @@
 {% set name = "capstone" %}
-{% set version = "4.0.2" %}
+{% set version = "5.0.1" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://github.com/aquynh/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 7c81d798022f81e7507f1a60d6817f63aa76e489aa4e7055255f21a22f5e526a
-  patches:  # [osx]
+  sha256: 2b9c66915923fdc42e0e32e2a9d7d83d3534a45bb235e163a70047951890c01a
+  patches:   # [osx]
     - osx.patch  # [osx]
 
 build:
-  number: 5
+  number: 0
   skip: true  # [py < 30]
 
 requirements:
