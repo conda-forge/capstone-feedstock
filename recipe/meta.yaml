@@ -63,11 +63,11 @@ outputs:
         - pip
         - cython
         - pthread-stubs
-        - {{ pin_subpackage('libcapstone', exact=True) }}
+        - {{ pin_subpackage('libcapstone', exact=True) }}  # [not win]
       run:
         - python
         - setuptools
-        - {{ pin_subpackage('libcapstone', exact=True) }}
+        - {{ pin_subpackage('libcapstone', exact=True) }}  # [not win]
     test:
       imports:
         - capstone
