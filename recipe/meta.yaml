@@ -12,8 +12,7 @@ source:
     - osx.patch  # [osx]
 
 build:
-  number: 6
-  skip: true  # [py < 30]
+  number: 7
 
 requirements:
   build:
@@ -35,6 +34,10 @@ requirements:
 test:
   imports:
     - capstone
+  requires:
+    - pip
+  commands:
+    - pip check
 
 about:
   home: http://www.capstone-engine.org/
