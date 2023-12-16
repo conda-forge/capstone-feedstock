@@ -18,6 +18,7 @@ outputs:
   - name: libcapstone
     script: install-lib.sh
     build:
+      skip: true  # [win]
       run_exports:
         - {{ pin_subpackage("libcapstone", max_pin="x.x.x") }}
     requirements:
@@ -31,6 +32,7 @@ outputs:
   - name: cstool
     script: install-lib.sh
     build:
+      skip: true  # [win]
       run_exports:
         - {{ pin_subpackage("libcapstone", max_pin="x.x.x") }}
     requirements:
@@ -44,9 +46,10 @@ outputs:
         - {{ pin_subpackage('libcapstone', exact=True) }}
     test:
       commands:
-        - cstool --help
+        - cstool -v
   - name: capstone
-    script: install-py.sh
+    script: install-py.sh   # [unix]
+    script: install-py.bat  # [win]
     requirements:
       build:
         - python                                 # [build_platform != target_platform]
