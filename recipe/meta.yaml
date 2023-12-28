@@ -2,39 +2,79 @@
 {% set version = "4.0.2" %}
 
 package:
-  name: {{ name|lower }}
+  name: {{ name|lower }}-split
   version: {{ version }}
 
 source:
   url: https://github.com/aquynh/{{ name }}/archive/{{ version }}.tar.gz
   sha256: 7c81d798022f81e7507f1a60d6817f63aa76e489aa4e7055255f21a22f5e526a
-  patches:  # [osx]
+  patches:
     - osx.patch  # [osx]
 
 build:
-  number: 6
-  skip: true  # [py < 30]
+  number: 7
 
-requirements:
-  build:
-    - python                                 # [build_platform != target_platform]
-    - cross-python_{{ target_platform }}     # [build_platform != target_platform]
-    - cython                                 # [build_platform != target_platform]
-    - {{ compiler('c') }}
-    - make
-    - cmake  # [win]
-  host:
-    - python
-    - pip
-    - cython
-    - pthread-stubs
-  run:
-    - python
-    - setuptools
-
-test:
-  imports:
-    - capstone
+outputs:
+  - name: libcapstone
+    script: install-lib.sh
+    build:
+      skip: true  # [win]
+      run_exports:
+        - {{ pin_subpackage("libcapstone", max_pin="x.x.x") }}
+    requirements:
+      build:
+        - cmake
+        - make
+        - {{ compiler('c') }}
+    test:
+      commands:
+        - test -f $PREFIX/lib/libcapstone${SHLIB_EXT}
+  - name: cstool
+    script: install-lib.sh
+    build:
+      skip: true  # [win]
+      run_exports:
+        - {{ pin_subpackage("libcapstone", max_pin="x.x.x") }}
+    requirements:
+      build:
+        - cmake
+        - make
+        - {{ compiler('c') }}
+      host:
+        - {{ pin_subpackage('libcapstone', exact=True) }}
+      run:
+        - {{ pin_subpackage('libcapstone', exact=True) }}
+    test:
+      commands:
+        - cstool -v
+  - name: capstone
+    script: install-py.sh   # [unix]
+    script: install-py.bat  # [win]
+    requirements:
+      build:
+        - python                                 # [build_platform != target_platform]
+        - cross-python_{{ target_platform }}     # [build_platform != target_platform]
+        - cython                                 # [build_platform != target_platform]
+        - {{ compiler('c') }}
+        - make
+        - cmake  # [win]
+      host:
+        - python
+        - pip
+        - cython
+        - pthread-stubs
+        - {{ pin_subpackage('libcapstone', exact=True) }}  # [not win]
+      run:
+        - python
+        - setuptools
+        - {{ pin_subpackage('libcapstone', exact=True) }}  # [not win]
+    test:
+      imports:
+        - capstone
+      requires:
+        - pip
+      commands:
+        - pip check
 
 about:
   home: http://www.capstone-engine.org/
@@ -48,7 +88,9 @@ about:
   dev_url: https://github.com/aquynh/capstone
 
 extra:
+  feedstock-name: capstone
   recipe-maintainers:
     - scopatz
     - CJ-Wright
     - thewchan
+    - xhochy
