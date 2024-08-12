@@ -1,5 +1,5 @@
 {% set name = "capstone" %}
-{% set version = "5.0.1" %}
+{% set version = "5.0.2" %}
 
 package:
   name: {{ name|lower }}-split
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/aquynh/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 2b9c66915923fdc42e0e32e2a9d7d83d3534a45bb235e163a70047951890c01a
+  sha256: 9d0be727cc942075a1696f576b88918eb0daf9db7a02f563f0c4e51a439a611d
   patches:
     - osx.patch  # [osx]
 
@@ -26,6 +26,7 @@ outputs:
         - cmake
         - make
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
     test:
       commands:
         - test -f $PREFIX/lib/libcapstone${SHLIB_EXT}
@@ -40,6 +41,7 @@ outputs:
         - cmake
         - make
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
       host:
         - {{ pin_subpackage('libcapstone', exact=True) }}
       run:
@@ -56,6 +58,7 @@ outputs:
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         - cython                                 # [build_platform != target_platform]
         - {{ compiler('c') }}
+        - {{ stdlib("c") }}
         - make
         - cmake  # [win]
       host:
