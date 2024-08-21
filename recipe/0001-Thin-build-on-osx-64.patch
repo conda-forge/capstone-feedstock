@@ -1,0 +1,22 @@
+From a5b96c5982439cb6087d89db1d521562cdf49013 Mon Sep 17 00:00:00 2001
+From: "Uwe L. Korn" <uwe.korn@quantco.com>
+Date: Wed, 21 Aug 2024 10:10:08 +0200
+Subject: [PATCH] Thin build on osx-64
+
+---
+ bindings/python/setup.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/bindings/python/setup.py b/bindings/python/setup.py
+index a5cb08c..133c4d8 100755
+--- a/bindings/python/setup.py
++++ b/bindings/python/setup.py
+@@ -148,7 +148,7 @@ def build_libraries():
+         if SYSTEM == "win32":
+             os.system('cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DCAPSTONE_BUILD_TESTS=OFF -DCAPSTONE_BUILD_CSTOOL=OFF -G "NMake Makefiles" ..')
+         else:
+-            os.system('cmake -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DCAPSTONE_BUILD_TESTS=OFF -DCAPSTONE_BUILD_CSTOOL=OFF -G "Unix Makefiles" ..')
++            os.system('cmake -DCAPSTONE_BUILD_MACOS_THIN=ON -DCMAKE_BUILD_TYPE=Release -DBUILD_SHARED_LIBS=ON -DCAPSTONE_BUILD_TESTS=OFF -DCAPSTONE_BUILD_CSTOOL=OFF -G "Unix Makefiles" ..')
+         os.system("cmake --build .")
+     else:  # Unix incl. cygwin
+         os.system("CAPSTONE_BUILD_CORE_ONLY=yes bash ./make.sh")
