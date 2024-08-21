@@ -60,7 +60,7 @@ outputs:
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
         - make
-        - cmake  # [win]
+        - cmake
       host:
         - python
         - pip
