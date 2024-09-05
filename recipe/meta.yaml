@@ -68,6 +68,7 @@ outputs:
         - cython
         - pthread-stubs
         - {{ pin_subpackage('libcapstone', exact=True) }}  # [not win]
+        - setuptools
       run:
         - python
         - setuptools
