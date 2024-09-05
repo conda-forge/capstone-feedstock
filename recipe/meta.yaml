@@ -13,7 +13,7 @@ source:
     - osx.patch  # [osx]
 
 build:
-  number: 0
+  number: 1
 
 outputs:
   - name: libcapstone
@@ -68,6 +68,7 @@ outputs:
         - cython
         - pthread-stubs
         - {{ pin_subpackage('libcapstone', exact=True) }}  # [not win]
+        - setuptools
       run:
         - python
         - setuptools
