@@ -1,5 +1,5 @@
 {% set name = "capstone" %}
-{% set version = "5.0.5" %}
+{% set version = "5.0.6" %}
 
 package:
   name: {{ name|lower }}-split
@@ -7,7 +7,7 @@ package:
 
 source:
   url: https://github.com/aquynh/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 3bfd3e7085fbf0fab75fb1454067bf734bb0bebe9b670af7ce775192209348e9
+  sha256: 240ebc834c51aae41ca9215d3190cc372fd132b9c5c8aa2d5f19ca0c325e28f9
   patches:
     - 0001-Thin-build-on-osx-64.patch
     - osx.patch  # [osx]
