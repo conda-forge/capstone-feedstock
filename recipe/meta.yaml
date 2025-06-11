@@ -11,7 +11,6 @@ source:
   sha256: af30a34af415123197b28072afaa9e0fd2c4c90daf70528cbcd13d5577e7a28c
   patches:
     - 0001-Thin-build-on-osx-64.patch
-    - osx.patch  # [osx]
 
 build:
   number: 0
