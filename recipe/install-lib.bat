@@ -8,6 +8,7 @@ else (
 )
 
 cmake %CMAKE_ARGS% ^
+  -G Ninja ^
   -B build ^
   -DCMAKE_BUILD_TYPE=Release ^
   -DCAPSTONE_BUILD_SHARED_LIBS=1 ^
