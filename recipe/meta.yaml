@@ -17,9 +17,9 @@ build:
 
 outputs:
   - name: libcapstone
-    script: install-lib.sh
+    script: install-lib.sh   # [unix]
+    script: install-lib.bat  # [win]
     build:
-      skip: true  # [win]
       run_exports:
         - {{ pin_subpackage("libcapstone", max_pin="x.x.x") }}
     requirements:
@@ -33,9 +33,9 @@ outputs:
       commands:
         - test -f $PREFIX/lib/libcapstone${SHLIB_EXT}
   - name: cstool
-    script: install-lib.sh
+    script: install-lib.sh   # [unix]
+    script: install-lib.bat  # [win]
     build:
-      skip: true  # [win]
       run_exports:
         - {{ pin_subpackage("libcapstone", max_pin="x.x.x") }}
     requirements:
@@ -70,13 +70,13 @@ outputs:
         - pip
         - cython
         - pthread-stubs
-        - {{ pin_subpackage('libcapstone', exact=True) }}  # [not win]
+        - {{ pin_subpackage('libcapstone', exact=True) }}
         - setuptools
       run:
         - python
         - setuptools
         - importlib_resources
-        - {{ pin_subpackage('libcapstone', exact=True) }}  # [not win]
+        - {{ pin_subpackage('libcapstone', exact=True) }}
     test:
       imports:
         - capstone
