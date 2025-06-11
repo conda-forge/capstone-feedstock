@@ -6,8 +6,6 @@ if "%PKG_NAME%"=="cstool" (
   set CAPSTONE_BUILD_CSTOOL=OFF
 )
 
-echo %CAPSTONE_BUILD_CSTOOL%
-
 cmake %CMAKE_ARGS% ^
   -G Ninja ^
   -B build ^
