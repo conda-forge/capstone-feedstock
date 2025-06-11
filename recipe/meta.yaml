@@ -31,7 +31,8 @@ outputs:
         - {{ stdlib("c") }}
     test:
       commands:
-        - test -f $PREFIX/lib/libcapstone${SHLIB_EXT}
+        - test -f $PREFIX/lib/libcapstone${SHLIB_EXT}            # [unix]
+        - if not exist %PREFIX%\Library\bin\capstone.dll exit 1  # [win]
   - name: cstool
     script: install-lib.sh   # [unix]
     script: install-lib.bat  # [win]
