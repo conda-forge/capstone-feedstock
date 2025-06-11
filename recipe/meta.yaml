@@ -27,6 +27,7 @@ outputs:
       build:
         - cmake
         - make
+        - {{ compiler('cxx') }}
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
     test:
@@ -42,6 +43,7 @@ outputs:
       build:
         - cmake
         - make
+        - {{ compiler('cxx') }}
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
       host:
@@ -59,6 +61,7 @@ outputs:
         - python                                 # [build_platform != target_platform]
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         - cython                                 # [build_platform != target_platform]
+        - {{ compiler('cxx') }}
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
         - make
@@ -87,7 +90,7 @@ about:
   home: http://www.capstone-engine.org/
   license: BSD-3-Clause
   license_family: BSD
-  license_file: LICENSE.TXT
+  license_file: LICENSES/LICENSE.TXT
   summary: The Ultimate Disassembler
   description: |
     Capstone is a lightweight multi-platform, multi-architecture disassembly framework
