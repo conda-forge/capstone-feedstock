@@ -1,5 +1,5 @@
 From affe53de99a23b8a2597e9210defaa4a206d6932 Mon Sep 17 00:00:00 2001
-From: Joris Vaillant <joris.vaillant@inria.fr>
+From: "Uwe L. Korn" <uwe.korn@quantco.com>
 Date: Wed, 11 Jun 2025 11:18:36 +0200
 Subject: [PATCH] [PATCH] Thin build on osx-64
 
