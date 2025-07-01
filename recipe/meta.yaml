@@ -1,46 +1,49 @@
 {% set name = "capstone" %}
-{% set version = "5.0.6" %}
+{% set version_archive = "6.0.0-Alpha4" %}
+{% set version = "6.0.0a4" %}
 
 package:
   name: {{ name|lower }}-split
   version: {{ version }}
 
 source:
-  url: https://github.com/aquynh/{{ name }}/archive/{{ version }}.tar.gz
-  sha256: 240ebc834c51aae41ca9215d3190cc372fd132b9c5c8aa2d5f19ca0c325e28f9
+  url: https://github.com/aquynh/{{ name }}/archive/{{ version_archive }}.tar.gz
+  sha256: af30a34af415123197b28072afaa9e0fd2c4c90daf70528cbcd13d5577e7a28c
   patches:
     - 0001-Thin-build-on-osx-64.patch
-    - osx.patch  # [osx]
 
 build:
   number: 0
 
 outputs:
   - name: libcapstone
-    script: install-lib.sh
+    script: install-lib.sh   # [unix]
+    script: install-lib.bat  # [win]
     build:
-      skip: true  # [win]
       run_exports:
         - {{ pin_subpackage("libcapstone", max_pin="x.x.x") }}
     requirements:
       build:
         - cmake
-        - make
+        - ninja
+        - {{ compiler('cxx') }}
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
     test:
       commands:
-        - test -f $PREFIX/lib/libcapstone${SHLIB_EXT}
+        - test -f $PREFIX/lib/libcapstone${SHLIB_EXT}            # [unix]
+        - if not exist %PREFIX%\Library\bin\capstone.dll exit 1  # [win]
   - name: cstool
-    script: install-lib.sh
+    script: install-lib.sh   # [unix]
+    script: install-lib.bat  # [win]
     build:
-      skip: true  # [win]
       run_exports:
         - {{ pin_subpackage("libcapstone", max_pin="x.x.x") }}
     requirements:
       build:
         - cmake
-        - make
+        - ninja
+        - {{ compiler('cxx') }}
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
       host:
@@ -58,6 +61,7 @@ outputs:
         - python                                 # [build_platform != target_platform]
         - cross-python_{{ target_platform }}     # [build_platform != target_platform]
         - cython                                 # [build_platform != target_platform]
+        - {{ compiler('cxx') }}
         - {{ compiler('c') }}
         - {{ stdlib("c") }}
         - make
@@ -67,13 +71,13 @@ outputs:
         - pip
         - cython
         - pthread-stubs
-        - {{ pin_subpackage('libcapstone', exact=True) }}  # [not win]
+        - {{ pin_subpackage('libcapstone', exact=True) }}
         - setuptools
       run:
         - python
         - setuptools
         - importlib_resources
-        - {{ pin_subpackage('libcapstone', exact=True) }}  # [not win]
+        - {{ pin_subpackage('libcapstone', exact=True) }}
     test:
       imports:
         - capstone
@@ -86,7 +90,7 @@ about:
   home: http://www.capstone-engine.org/
   license: BSD-3-Clause
   license_family: BSD
-  license_file: LICENSE.TXT
+  license_file: LICENSES/LICENSE.TXT
   summary: The Ultimate Disassembler
   description: |
     Capstone is a lightweight multi-platform, multi-architecture disassembly framework

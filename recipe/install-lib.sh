@@ -2,12 +2,20 @@
 
 set -exuo pipefail
 
-mkdir -p $PREFIX/lib
-
-export PKGCFGDIR=$PREFIX/lib/pkgconfig
-make -j${CPU_COUNT}
-make install
-
-if [[ "${PKG_NAME}" != "cstool" ]]; then
-  rm $PREFIX/bin/cstool
+if [[ "${PKG_NAME}" == "cstool" ]]; then
+  CAPSTONE_BUILD_CSTOOL=ON
+else
+  CAPSTONE_BUILD_CSTOOL=OFF
 fi
+
+cmake ${CMAKE_ARGS} \
+  -G Ninja \
+  -B build \
+  -DCMAKE_BUILD_TYPE=Release \
+  -DCAPSTONE_BUILD_SHARED_LIBS=ON \
+  -DCAPSTONE_BUILD_STATIC_LIBS=OFF \
+  -DCAPSTONE_BUILD_CSTOOL=$CAPSTONE_BUILD_CSTOOL \
+  -DCAPSTONE_BUILD_MACOS_THIN=ON
+
+cmake --build build -j${CPU_COUNT}
+cmake --install build

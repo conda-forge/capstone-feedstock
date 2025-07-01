@@ -55,38 +55,10 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>win_64_python3.10.____cpython</td>
+              <td>win_64</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7824&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/capstone-feedstock?branchName=main&jobName=win&configuration=win%20win_64_python3.10.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_python3.11.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7824&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/capstone-feedstock?branchName=main&jobName=win&configuration=win%20win_64_python3.11.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_python3.12.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7824&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/capstone-feedstock?branchName=main&jobName=win&configuration=win%20win_64_python3.12.____cpython" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_python3.13.____cp313</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7824&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/capstone-feedstock?branchName=main&jobName=win&configuration=win%20win_64_python3.13.____cp313" alt="variant">
-                </a>
-              </td>
-            </tr><tr>
-              <td>win_64_python3.9.____cpython</td>
-              <td>
-                <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=7824&branchName=main">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/capstone-feedstock?branchName=main&jobName=win&configuration=win%20win_64_python3.9.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/capstone-feedstock?branchName=main&jobName=win&configuration=win%20win_64_" alt="variant">
                 </a>
               </td>
             </tr>
@@ -109,14 +81,14 @@ Current release info
 Installing capstone
 ===================
 
-Installing `capstone` from the `conda-forge` channel can be achieved by adding `conda-forge` to your channels with:
+Installing `capstone` from the `conda-forge/label/capstone_dev` channel can be achieved by adding `conda-forge/label/capstone_dev` to your channels with:
 
 ```
-conda config --add channels conda-forge
+conda config --add channels conda-forge/label/capstone_dev
 conda config --set channel_priority strict
 ```
 
-Once the `conda-forge` channel has been enabled, `capstone, cstool, libcapstone` can be installed with `conda`:
+Once the `conda-forge/label/capstone_dev` channel has been enabled, `capstone, cstool, libcapstone` can be installed with `conda`:
 
 ```
 conda install capstone cstool libcapstone
@@ -131,26 +103,26 @@ mamba install capstone cstool libcapstone
 It is possible to list all of the versions of `capstone` available on your platform with `conda`:
 
 ```
-conda search capstone --channel conda-forge
+conda search capstone --channel conda-forge/label/capstone_dev
 ```
 
 or with `mamba`:
 
 ```
-mamba search capstone --channel conda-forge
+mamba search capstone --channel conda-forge/label/capstone_dev
 ```
 
 Alternatively, `mamba repoquery` may provide more information:
 
 ```
 # Search all versions available on your platform:
-mamba repoquery search capstone --channel conda-forge
+mamba repoquery search capstone --channel conda-forge/label/capstone_dev
 
 # List packages depending on `capstone`:
-mamba repoquery whoneeds capstone --channel conda-forge
+mamba repoquery whoneeds capstone --channel conda-forge/label/capstone_dev
 
 # List dependencies of `capstone`:
-mamba repoquery depends capstone --channel conda-forge
+mamba repoquery depends capstone --channel conda-forge/label/capstone_dev
 ```
 
 
