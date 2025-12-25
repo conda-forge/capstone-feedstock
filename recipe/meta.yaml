@@ -18,9 +18,9 @@ build:
 
 outputs:
   - name: libcapstone
-    script: install-lib.sh
+    script: install-lib.sh   # [unix]
+    script: install-lib.bat  # [win]
     build:
-      skip: true  # [win]
       run_exports:
         - {{ pin_subpackage("libcapstone", max_pin="x.x.x") }}
     requirements:
@@ -31,11 +31,14 @@ outputs:
         - {{ stdlib("c") }}
     test:
       commands:
-        - test -f $PREFIX/lib/libcapstone${SHLIB_EXT}
+        - test -f $PREFIX/lib/libcapstone${SHLIB_EXT}       # [unix]
+        - if not exist %LIBRARY_BIN%\capstone.dll exit 1    # [win]
+        - if not exist %LIBRARY_LIB%\capstone.lib exit 1    # [win]
+
   - name: cstool
-    script: install-lib.sh
+    script: install-lib.sh   # [unix]
+    script: install-lib.bat  # [win]
     build:
-      skip: true  # [win]
       run_exports:
         - {{ pin_subpackage("libcapstone", max_pin="x.x.x") }}
     requirements:
@@ -51,6 +54,7 @@ outputs:
     test:
       commands:
         - cstool -v
+
   - name: capstone
     script: install-py.sh  # [unix]
     script: install-py.bat  # [win]
@@ -68,13 +72,13 @@ outputs:
         - pip
         - cython
         - pthread-stubs
-        - {{ pin_subpackage('libcapstone', exact=True) }}  # [not win]
+        - {{ pin_subpackage('libcapstone', exact=True) }}
         - setuptools
       run:
         - python
         - setuptools
         - importlib_resources
-        - {{ pin_subpackage('libcapstone', exact=True) }}  # [not win]
+        - {{ pin_subpackage('libcapstone', exact=True) }}
     test:
       source_files:
         - bindings/python/tests/
@@ -89,6 +93,8 @@ outputs:
         - test ! -f $SP_DIR/capstone/include/capstone/x86.h         # [unix]
         - test ! -f $SP_DIR/capstone/lib/libcapstone.so             # [linux]
         - test ! -f $SP_DIR/capstone/lib/libcapstone.dylib          # [osx]
+        - if exist %SP_DIR%\capstone\include\capstone\x86.h exit 1  # [win]
+        - if exist %SP_DIR%\capstone\lib\capstone.dll exit 1        # [win]
 
 about:
   home: http://www.capstone-engine.org/
