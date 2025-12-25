@@ -5,7 +5,7 @@ package:
   version: {{ version }}
 
 source:
-  url: https://github.com/aquynh/capstone/archive/{{ version }}.tar.gz
+  url: https://github.com/capstone-engine/capstone/archive/{{ version }}.tar.gz
   sha256: 240ebc834c51aae41ca9215d3190cc372fd132b9c5c8aa2d5f19ca0c325e28f9
   patches:
     - 0001-Thin-build-on-osx-64.patch
@@ -90,7 +90,7 @@ about:
   description: |
     Capstone is a lightweight multi-platform, multi-architecture disassembly framework
   doc_url: http://www.capstone-engine.org/documentation.html
-  dev_url: https://github.com/aquynh/capstone
+  dev_url: https://github.com/capstone-engine/capstone
 
 extra:
   feedstock-name: capstone

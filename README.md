@@ -9,7 +9,7 @@ Package license: BSD-3-Clause
 
 Summary: The Ultimate Disassembler
 
-Development: https://github.com/aquynh/capstone
+Development: https://github.com/capstone-engine/capstone
 
 Documentation: http://www.capstone-engine.org/documentation.html
 
