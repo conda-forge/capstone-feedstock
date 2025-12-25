@@ -10,6 +10,7 @@ source:
   patches:
     - patches/0001-Thin-build-on-osx-64.patch
     - patches/0002-skip-IS_APPLE-check-on-osx.patch  # [osx]
+    - patches/0003-rely-on-libcapstone-do-not-smuggle-lib-headers-into-.patch
 
 build:
   number: 2
@@ -83,6 +84,10 @@ outputs:
       commands:
         - pip check
         - python bindings/python/tests/test_all.py
+        # absence of library & headers in site-packages
+        - test ! -f $SP_DIR/capstone/include/capstone/x86.h         # [unix]
+        - test ! -f $SP_DIR/capstone/lib/libcapstone.so             # [linux]
+        - test ! -f $SP_DIR/capstone/lib/libcapstone.dylib          # [osx]
 
 about:
   home: http://www.capstone-engine.org/
