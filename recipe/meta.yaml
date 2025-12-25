@@ -1,12 +1,11 @@
-{% set name = "capstone" %}
 {% set version = "5.0.6" %}
 
 package:
-  name: {{ name|lower }}-split
+  name: capstone-split
   version: {{ version }}
 
 source:
-  url: https://github.com/aquynh/{{ name }}/archive/{{ version }}.tar.gz
+  url: https://github.com/aquynh/capstone/archive/{{ version }}.tar.gz
   sha256: 240ebc834c51aae41ca9215d3190cc372fd132b9c5c8aa2d5f19ca0c325e28f9
   patches:
     - 0001-Thin-build-on-osx-64.patch
