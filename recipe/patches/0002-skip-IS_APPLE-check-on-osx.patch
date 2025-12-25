@@ -1,7 +1,7 @@
 From e81bbc9de3b17b6a8b18b35d8a6dad84a15d2c7a Mon Sep 17 00:00:00 2001
 From: "Christopher J. Wright" <cjwright4242@gmail.com>
 Date: Thu, 18 Mar 2021 17:16:27 -0400
-Subject: [PATCH 2/3] skip IS_APPLE check on osx
+Subject: [PATCH 2/4] skip IS_APPLE check on osx
 
 ---
  Makefile | 2 +-

@@ -11,6 +11,7 @@ source:
     - patches/0001-Thin-build-on-osx-64.patch
     - patches/0002-skip-IS_APPLE-check-on-osx.patch  # [osx]
     - patches/0003-rely-on-libcapstone-do-not-smuggle-lib-headers-into-.patch
+    - patches/0004-split-build-and-install-steps-for-python-use-prefix.patch
 
 build:
   number: 2
