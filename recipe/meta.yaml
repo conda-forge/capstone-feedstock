@@ -34,6 +34,9 @@ outputs:
         - test -f $PREFIX/lib/libcapstone${SHLIB_EXT}       # [unix]
         - if not exist %LIBRARY_BIN%\capstone.dll exit 1    # [win]
         - if not exist %LIBRARY_LIB%\capstone.lib exit 1    # [win]
+        # absence of cstool
+        - test ! -f $PREFIX/bin/cstool                      # [unix]
+        - if exist %LIBRARY_BIN%\cstool.exe exit 1          # [win]
 
   - name: cstool
     script: install-lib.sh   # [unix]
