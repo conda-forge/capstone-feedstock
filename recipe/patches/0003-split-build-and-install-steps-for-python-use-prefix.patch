@@ -1,0 +1,23 @@
+From 6e7f5feba3be90c6e1eb5686cb366e15c0ad51ac Mon Sep 17 00:00:00 2001
+From: "H. Vetinari" <h.vetinari@gmx.com>
+Date: Thu, 25 Dec 2025 17:31:07 +1100
+Subject: [PATCH 3/3] split build and install steps for python, use prefix
+
+---
+ bindings/python/Makefile | 3 ++-
+ 1 file changed, 2 insertions(+), 1 deletion(-)
+
+diff --git a/bindings/python/Makefile b/bindings/python/Makefile
+index 2f13770e..a8dec0cb 100644
+--- a/bindings/python/Makefile
++++ b/bindings/python/Makefile
+@@ -17,7 +17,8 @@ install:
+ install3:
+ 	rm -rf src/
+ 	if test -n "${DESTDIR}"; then \
+-		$(PYTHON3) setup.py build install --root="${DESTDIR}"; \
++		$(PYTHON3) setup.py build; \
++		$(PYTHON3) setup.py install --prefix="${PREFIX}"; \
+ 	else \
+ 		$(PYTHON3) setup.py build install; \
+ 	fi
