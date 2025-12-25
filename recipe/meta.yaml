@@ -74,12 +74,15 @@ outputs:
         - importlib_resources
         - {{ pin_subpackage('libcapstone', exact=True) }}  # [not win]
     test:
+      source_files:
+        - bindings/python/tests/
       imports:
         - capstone
       requires:
         - pip
       commands:
         - pip check
+        - python bindings/python/tests/test_all.py
 
 about:
   home: http://www.capstone-engine.org/
