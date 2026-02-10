@@ -1,4 +1,4 @@
-{% set version = "5.0.6" %}
+{% set version = "5.0.7" %}
 
 package:
   name: capstone-split
@@ -6,18 +6,18 @@ package:
 
 source:
   url: https://github.com/capstone-engine/capstone/archive/{{ version }}.tar.gz
-  sha256: 240ebc834c51aae41ca9215d3190cc372fd132b9c5c8aa2d5f19ca0c325e28f9
+  sha256: 6427a724726d161d1e05fb49fff8cd0064f67836c04ffca3c11d6d859e719caa
   patches:
     - patches/0001-skip-IS_APPLE-check-on-osx.patch  # [osx]
     - patches/0002-rely-on-libcapstone-do-not-smuggle-lib-headers-into-.patch
     - patches/0003-split-build-and-install-steps-for-python-use-prefix.patch
 
 build:
-  number: 2
+  number: 0
 
 outputs:
   - name: libcapstone
-    script: install-lib.sh   # [unix]
+    script: install-lib.sh  # [unix]
     script: install-lib.bat  # [win]
     build:
       run_exports:
@@ -38,7 +38,7 @@ outputs:
         - if exist %LIBRARY_BIN%\cstool.exe exit 1          # [win]
 
   - name: cstool
-    script: install-lib.sh   # [unix]
+    script: install-lib.sh  # [unix]
     script: install-lib.bat  # [win]
     build:
       run_exports:
