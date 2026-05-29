@@ -1,4 +1,4 @@
-{% set version = "5.0.8" %}
+{% set version = "5.0.9" %}
 
 package:
   name: capstone-split
@@ -6,7 +6,7 @@ package:
 
 source:
   url: https://github.com/capstone-engine/capstone/archive/{{ version }}.tar.gz
-  sha256: 467e128736227a12a2066c562cfe69a2b7c45353fab3f02a0522d9cd62ccf0f6
+  sha256: 0619da31af08152600af95c481527ef6d756c0a8404fca7544a4fdf6dfc2c0f9
   patches:
     - patches/0001-skip-IS_APPLE-check-on-osx.patch  # [osx]
     - patches/0002-rely-on-libcapstone-do-not-smuggle-lib-headers-into-.patch
