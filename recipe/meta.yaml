@@ -58,8 +58,10 @@ outputs:
         - cstool -v
 
   - name: capstone
-    script: install-py.sh  # [unix and not riscv64]
+    script: install-py.sh  # [unix]
     script: install-py.bat  # [win]
+    build:
+      skip: true  # [riscv64]
     requirements:
       build:
         - python                                 # [build_platform != target_platform]
