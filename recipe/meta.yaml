@@ -13,7 +13,7 @@ source:
     - patches/0003-split-build-and-install-steps-for-python-use-prefix.patch
 
 build:
-  number: 1
+  number: 2
 
 outputs:
   - name: libcapstone
@@ -58,7 +58,7 @@ outputs:
         - cstool -v
 
   - name: capstone
-    script: install-py.sh  # [unix]
+    script: install-py.sh  # [unix and not riscv64]
     script: install-py.bat  # [win]
     requirements:
       build:
