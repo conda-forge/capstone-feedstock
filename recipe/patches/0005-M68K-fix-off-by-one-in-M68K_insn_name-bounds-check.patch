@@ -1,0 +1,28 @@
+From b4def451a8e049cf09fd14b8f1df46051267c002 Mon Sep 17 00:00:00 2001
+From: conda-forge <conda-forge@users.noreply.github.com>
+Date: Sat, 21 Nov 2026 08:59:35 +0100
+Subject: [PATCH 5/5] M68K: fix off-by-one in M68K_insn_name bounds check
+
+The CVE-2026-49282 backport in 5.0.9 checks id > ARR_SIZE(...), which
+still allows reading one element past the end of s_instruction_names
+when id == ARR_SIZE(...).
+---
+ arch/M68K/M68KInstPrinter.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/arch/M68K/M68KInstPrinter.c b/arch/M68K/M68KInstPrinter.c
+index 061edb3..721c363 100644
+--- a/arch/M68K/M68KInstPrinter.c
++++ b/arch/M68K/M68KInstPrinter.c
+@@ -362,7 +362,7 @@ const char* M68K_insn_name(csh handle, unsigned int id)
+ #ifdef CAPSTONE_DIET
+ 	return NULL;
+ #else
+-	if (id > ARR_SIZE(s_instruction_names)) {
++	if (id >= ARR_SIZE(s_instruction_names)) {
+ 		return NULL;
+ 	}
+ 	return s_instruction_names[id];
+-- 
+2.56.0
+

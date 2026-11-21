@@ -11,9 +11,13 @@ source:
     - patches/0001-skip-IS_APPLE-check-on-osx.patch  # [osx]
     - patches/0002-rely-on-libcapstone-do-not-smuggle-lib-headers-into-.patch
     - patches/0003-split-build-and-install-steps-for-python-use-prefix.patch
+    # CVE-2026-55893, CVE-2026-55894 (SH backend OOB); from the unreleased v5 branch
+    - patches/0004-V5-Fix-OOB-reads-writes-CVE-2026-55893-CVE-2026-5589.patch
+    # Off-by-one left over from the CVE-2026-49282 backport in 5.0.9
+    - patches/0005-M68K-fix-off-by-one-in-M68K_insn_name-bounds-check.patch
 
 build:
-  number: 3
+  number: 4
 
 outputs:
   - name: libcapstone
